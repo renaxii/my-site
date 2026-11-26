@@ -5,11 +5,11 @@ hi, i'm serena! this is my personal site with some of my photos
 ### built with 
 - html, css, and javascript
 
-## features
+### features
 - click digicam to display photos
 - x to close out of photo display
 
-## how to view
+### how to view
 visit the site at: https://serenani.vercel.app/
 
 ![preview](/images/preview.png)
@@ -17,3 +17,5 @@ visit the site at: https://serenani.vercel.app/
 # things to add
 - dark mode
 - more personality
+
+another note: i forgot to intialize the repo until i was mostly done so everything is pretty much in the first commit 😭
