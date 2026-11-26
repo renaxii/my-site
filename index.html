@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Serena Ni</title>
+  <link rel="icon" type="image/jpeg" href="/images/favicon.jpeg">
+  <link rel="apple-touch-icon" href="/images/me.jpeg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="home" id="home">
+    <div class="home-content">
+      <div class="intro">
+        <h1>hi, i'm<br><span>serena!</span></h1>
+
+        <p>
+          i'm a high school student who loves space and cybersecurity.
+          i enjoy doing physics, origami, and robotics.
+          in my free time, i like to read, take photos and make things!
+        </p>
+
+        <div class="socials">
+          <a class="social-link" href="https://github.com/renaxii" target="_blank" rel="noopener noreferrer">github <span>↗</span></a>
+          <a class="social-link" href="mailto:yni.serena@gmail.com">email <span>↗</span></a>
+        </div>
+      </div>
+
+      <button class="camera-button" id="open-camera" aria-label="Open photo collection" type="button">
+        <span class="camera-frame">
+          <img src="/images/me.jpeg" alt="A photo of me" class="camera-photo">
+        </span>
+        <img src="/images/digicam.png" alt="Digital camera" class="camera-image">
+      </button>
+    </div>
+  </main>
+
+  <section class="photo-viewer" id="photo-viewer" aria-hidden="true">
+    <button class="close-button" id="close-camera" aria-label="Close photos" type="button">
+      <span class="close-x"></span>
+      <span class="close-y"></span>
+    </button>
+
+    <div class="photo-strip" id="photo-strip">
+      <button class="photo-item" data-index="0" type="button">
+        <img src="images/blue-angels.jpg" alt="blue angels at sf fleet week 2026">
+        <span class="photo-number">01</span>
+        <span class="photo-caption">BLUE ANGELS!!!</span>
+      </button>
+
+      <button class="photo-item" data-index="1" type="button">
+        <img src="images/fish.JPG" alt="Fish at the National Zoo">
+        <span class="photo-number">02</span>
+        <span class="photo-caption">fish lined up in a row</span>
+      </button>
+
+      <button class="photo-item" data-index="2" type="button">
+        <img src="images/books.JPG" alt="Books">
+        <span class="photo-number">03</span>
+        <span class="photo-caption">books!</span>
+      </button>
+
+      <button class="photo-item" data-index="3" type="button">
+        <img src="images/dog.JPG" alt="My dog">
+        <span class="photo-number">04</span>
+        <span class="photo-caption">my dog &lt;3</span>
+      </button>
+
+      <button class="photo-item" data-index="4" type="button">
+        <img src="images/windmill.JPG" alt="Windmill">
+        <span class="photo-number">05</span>
+        <span class="photo-caption">zaanse schans, netherlands</span>
+      </button>
+
+      <button class="photo-item" data-index="5" type="button">
+        <img src="images/matcha.JPG" alt="Matcha">
+        <span class="photo-number">06</span>
+        <span class="photo-caption">matchaaaa</span>
+      </button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
