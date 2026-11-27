@@ -5,6 +5,27 @@ const closePhotosButton = document.getElementById("close-camera");
 const photoStrip = document.getElementById("photo-strip");
 const photoItems = document.querySelectorAll(".photo-item");
 
+const clock = document.getElementById("clock");
+const timezone = document.getElementById("timezone");
+
+function updateClock() {
+  const now = new Date();
+  const timeZone = "America/Los_Angeles";
+
+  clock.textContent = new Intl.DateTimeFormat("en-GB", {
+    timeZone,
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  }).format(now);
+
+  timezone.textContent = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    timeZoneName: "short"
+  }).formatToParts(now).find(part => part.type === "timeZoneName").value;
+}
+
 function openPhotos() {
   home.classList.add("hidden");
   photoViewer.classList.add("open");
@@ -22,6 +43,9 @@ function closePhotos() {
 
   photoStrip.classList.remove("has-expanded");
 }
+
+updateClock();
+setInterval(updateClock, 1000);
 
 openCameraButton.addEventListener("click", openPhotos);
 closePhotosButton.addEventListener("click", closePhotos);

@@ -94,6 +94,51 @@ h1 span {
   line-height: 1.9;
 }
 
+.local-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 22px;
+}
+
+.local-clock {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: .08em;
+  font-variant-numeric: tabular-nums;
+}
+
+#timezone {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .1em;
+}
+
+.local-airport {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .025em;
+}
+
+.airport-divider {
+  width: 1px;
+  height: 13px;
+  background: var(--border);
+}
+
+.airport-code {
+  color: var(--blue);
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
 .socials {
   display: flex;
   align-items: center;
@@ -413,6 +458,11 @@ h1 span {
 
   .intro p {
     margin: auto;
+  }
+
+  .local-info {
+    justify-content: center;
+    gap: 12px;
   }
 
   .socials {
