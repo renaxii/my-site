@@ -1,3 +1,4 @@
+
 const home = document.getElementById("home");
 const photoViewer = document.getElementById("photo-viewer");
 const openCameraButton = document.getElementById("open-camera");
@@ -44,6 +45,52 @@ function closePhotos() {
   photoStrip.classList.remove("has-expanded");
 }
 
+function scrollToPhoto(photo) {
+  const isMobile = window.matchMedia("(max-width: 700px)").matches;
+
+  photo.scrollIntoView({
+    behavior: "smooth",
+    block: isMobile ? "center" : "nearest",
+    inline: isMobile ? "nearest" : "center"
+  });
+}
+
+function expandPhoto(photo) {
+  const wasExpanded = photo.classList.contains("expanded");
+
+  photoItems.forEach((item) => {
+    item.classList.remove("expanded");
+  });
+
+  if (!wasExpanded) {
+    photo.classList.add("expanded");
+    photoStrip.classList.add("has-expanded");
+    scrollToPhoto(photo);
+  } else {
+    photoStrip.classList.remove("has-expanded");
+  }
+}
+
+function navigatePhotos(direction) {
+  const current = document.querySelector(".photo-item.expanded");
+
+  if (!current) return;
+
+  const currentIndex = Number(current.dataset.index);
+  const nextIndex = (
+    currentIndex + direction + photoItems.length
+  ) % photoItems.length;
+
+  photoItems.forEach((item) => {
+    item.classList.remove("expanded");
+  });
+
+  const nextPhoto = photoItems[nextIndex];
+
+  nextPhoto.classList.add("expanded");
+  scrollToPhoto(nextPhoto);
+}
+
 updateClock();
 setInterval(updateClock, 1000);
 
@@ -52,25 +99,18 @@ closePhotosButton.addEventListener("click", closePhotos);
 
 photoItems.forEach((photo) => {
   photo.addEventListener("click", () => {
-    const wasExpanded = photo.classList.contains("expanded");
-
-    photoItems.forEach((item) => {
-      item.classList.remove("expanded");
-    });
-
-    if (!wasExpanded) {
-      photo.classList.add("expanded");
-      photoStrip.classList.add("has-expanded");
-
-      photo.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center"
-      });
-    } else {
-      photoStrip.classList.remove("has-expanded");
-    }
+    expandPhoto(photo);
   });
+});
+
+document.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("dragstart", (event) => {
+  if (event.target.tagName === "IMG") {
+    event.preventDefault();
+  }
 });
 
 document.addEventListener("keydown", (event) => {
@@ -80,29 +120,26 @@ document.addEventListener("keydown", (event) => {
 
   if (event.key === "Escape") {
     closePhotos();
+    return;
   }
 
-  if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-    const current = document.querySelector(".photo-item.expanded");
+  const isMobile = window.matchMedia("(max-width: 700px)").matches;
 
-    if (!current) return;
+  if (isMobile) {
+    if (event.key === "ArrowDown") {
+      navigatePhotos(1);
+    }
 
-    const currentIndex = Number(current.dataset.index);
+    if (event.key === "ArrowUp") {
+      navigatePhotos(-1);
+    }
+  } else {
+    if (event.key === "ArrowRight") {
+      navigatePhotos(1);
+    }
 
-    const nextIndex = event.key === "ArrowRight"
-      ? (currentIndex + 1) % photoItems.length
-      : (currentIndex - 1 + photoItems.length) % photoItems.length;
-
-    photoItems.forEach((item) => {
-      item.classList.remove("expanded");
-    });
-
-    photoItems[nextIndex].classList.add("expanded");
-
-    photoItems[nextIndex].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center"
-    });
+    if (event.key === "ArrowLeft") {
+      navigatePhotos(-1);
+    }
   }
 });
